@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
 import counterSlice from './slices/counter.slice'
+import usersSlice from './slices/users.slice'
 
 export const store = configureStore({
   reducer: {
-    counter: counterSlice,
+    counterSlice: counterSlice,
+    usersSlice: usersSlice,
   },
 })
 
