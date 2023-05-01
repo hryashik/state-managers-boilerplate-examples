@@ -1,17 +1,27 @@
 import React from 'react'
 import counterStore from './stores/counter.store'
+import usersStore from './stores/users.store'
 
-const List = () => {
+const List = React.memo(() => {
+  const { users, fetchUsers } = usersStore()
   console.log('@List render')
+  React.useEffect(() => {
+    setTimeout(() => fetchUsers(), 1500)
+  }, [])
+  if (!users.length) return <h1>Идет загрузка пользователей...</h1>
   return (
     <>
-      <ul>s</ul>
+      <ul>
+        {users.map(el => (
+          <li key={el.id}>{el.name}</li>
+        ))}
+      </ul>
     </>
   )
-}
+})
 
 function App() {
-  const { counter, increment, decrement } = counterStore(state => state)
+  const { counter, increment, decrement } = counterStore()
   console.log('@App render')
   return (
     <div>
