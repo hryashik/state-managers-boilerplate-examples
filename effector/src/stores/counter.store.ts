@@ -7,6 +7,6 @@ const defaultState = {
 export const increment = createEvent()
 export const decrement = createEvent()
 
-export const counterStore = createStore(defaultState)
+export const $counterStore = createStore(defaultState)
   .on(increment, state => ({ ...state, counter: ++state.counter }))
   .on(decrement, state => ({ ...state, counter: --state.counter }))
